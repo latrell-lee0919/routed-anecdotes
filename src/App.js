@@ -71,10 +71,6 @@ const Footer = () => (
 )
 
 const CreateNew = (props) => {
-  // const [content, setContent] = useState('')
-  // const [author, setAuthor] = useState('')
-  // const [info, setInfo] = useState('')
-
   const content = useField('text')
   const author = useField('text')
   const info = useField('text')
@@ -89,23 +85,42 @@ const CreateNew = (props) => {
     })
   }
 
+  const reset = () => {
+    content.reset()
+    author.reset()
+    info.reset()
+  }
+
   return (
     <div>
       <h2>create a new anecdote</h2>
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input {...content} />
+          <input 
+            type={content.type}
+            name="content"
+            value={content.value}
+            onChange={content.onChange}/>
         </div>
         <div>
           author
-          <input {...author} />
+          <input 
+            type={author.type}
+            name="author"
+            value={author.value}
+            onChange={author.onChange} />
         </div>
         <div>
           url for more info
-          <input {...info} />
+          <input 
+            type={info.type}
+            name="info"
+            value={info.value}
+            onChange={info.onChange} />
         </div>
-        <button>create</button>
+        <button type="submit">create</button>
+        <button type="reset" onClick={reset}>reset</button>
       </form>
     </div>
   )
